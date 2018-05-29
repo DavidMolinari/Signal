@@ -169,10 +169,13 @@ varsb(ddo2, jmax);
 figure(6);
 subplot(1,2,1);
 imagesc(lena);
+title('Lena de base');
+
 subplot(1,2,2);
 
 xT = SoftThresh(ddo2, 100);
 imagesc(IWT2_SBS(xT, L, qmf, dqmf))
+title('SoftThresh avec un seul à 100');
 
 
 fprintf('norm lena : %f\n', norm(lena));
