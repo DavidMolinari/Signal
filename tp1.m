@@ -27,9 +27,9 @@ plot(d, 'g');
 legend('Daubechies');
 
 nfft = 256;
-f = (0:nfft-1)/256;
+f = (0:nfft-1)/nfft;
 y = fft(d, nfft);
-subplot(1,maxPlot,4);
+subplot(1,maxPlot,4); % Finalement j'utilise le maxPlot
 plot(f, abs(y));
 legend('fft');
 
@@ -89,21 +89,16 @@ L = log2(n)-jmax;
 mof =  MakeONFilter('Daubechies', 4);
 title('Signal Lena');
 
-fid = fopen('Lenna.raw', 'r');
-
+fid = fopen('Lenna.raw', 'r'); % le .Raw a été téléchargé ici : https://github.com/FredGithub/ImageProcess/blob/master/res/img/lena.raw
 lena = fread(fid,[256,256]);
-lena = double(lena);
-
+lena = double(lena); % J'en avais besoin, dunno why
 
 figure(3);
 subplot(3, 3, 1)
 plot(lena);
 title('Lena');
 
-
-
-
-
+% Les commentaires sont les Titles des plots :>
 gLena = FWT2_PO(lena, L, mof);
 subplot(3, 3, 2)
 plot(gLena);
