@@ -1,21 +1,22 @@
 clear
 close all
-clc
+clc % Nettoyage de la console
 
 n = 1024;
 j = 4;
 k = 2^(j-1);
-maxPlot = 5;
+maxPlot = 5; % Non utilisé, servait à subplot plus facilement
 figure(1)
-phi = MakeWavelet(j, k, 'Haar', [], 'Father', n);
+psi = MakeWavelet(j, k, 'Haar', [], 'Mother', n); % Ondelette Mère
+phi = MakeWavelet(j, k, 'Haar', [], 'Father', n); % Ondelette Père
 phi = phi*2^(log2(n)/2);
 subplot(1,maxPlot,1);
 
 plot(phi, 'r');
 legend('Haar');
-mof =  MakeONFilter('Haar');
-fwt = FWT_PO(phi, 0, mof);
-subplot(1,maxPlot,2),
+mof =  MakeONFilter('Haar'); %Filtre H0
+fwt = FWT_PO(phi, 0, mof); % Les coefficients d'approximation
+subplot(1,maxPlot,2), % Affichage des coefficients d'approximation
 plot(fwt, 'b');
 legend('FWT_PO(Haar)');
 
